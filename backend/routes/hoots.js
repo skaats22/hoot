@@ -1,12 +1,25 @@
-const express = require('express');
+// routes/hoots
+
+const express = require("express");
 const router = express.Router();
-const postsCtrl = require('../controllers/posts');
+const hootsCtrl = require('../controllers/hoots');
 
-// All paths start with '/api/posts'
+// add routes here
 
-// POST /api/posts
-router.post('/', postsCtrl.create);
-// GET /api/posts
-router.get('/', postsCtrl.index);
+//POST /hoots (create)
+router.post("/", hootsCtrl.create);
+
+// GET /hoots (index)
+router.get("/", hootsCtrl.index);
+
+// GET /hoots/:hootId (show)
+router.get("/:hootId", hootsCtrl.show);
+
+// PUT /hoots/:hootId (update)
+router.put("/:hootId", hootsCtrl.update)
+
+// DELETE /hoots/:hootId (delete)
+router.delete("/:hootId", hootsCtrl.deleteHoot);
+
 
 module.exports = router;

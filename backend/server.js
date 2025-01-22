@@ -2,7 +2,6 @@ const path = require('path'); // Built into Node
 const express = require('express');
 const logger = require('morgan');
 const app = express();
-const hootsRouter = require("./controllers/hoots.js");
 
 // Process the secrets/config vars in .env
 require('dotenv').config();
@@ -17,6 +16,7 @@ app.use(express.static(path.join(__dirname, '../frontend/dist')));
 // because forms are not submitted!
 app.use(express.json());
 
+
 // Check & verify token. If so, add user payload to req.user
 app.use(require('./middleware/checkToken'));
 
@@ -26,9 +26,8 @@ app.use('/api/auth', require('./routes/auth'));
 // All routers below will have all routes protected
 app.use(require('./middleware/ensureLoggedIn'));
 
-app.use('/api/posts', require('./routes/posts'));
-
-app.use("/hoots", hootsRouter);
+app.use("/api/hoots", require('./routes/hoots'));
+app.use("/api/hoots", require('./routes/comments'));
 
 // Use a "catch-all" route to deliver the frontend's production index.html
 app.get('*', function (req, res) {
