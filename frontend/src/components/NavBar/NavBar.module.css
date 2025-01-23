@@ -32,6 +32,11 @@
   text-align: right;
 }
 
+/* Moved to right side! */
+span {
+  margin-left: auto;
+}
+
 @media only screen and (max-width: 414px) {
   .container ul {
     padding-left: 0px;
