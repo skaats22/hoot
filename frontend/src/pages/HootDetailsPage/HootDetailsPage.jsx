@@ -4,7 +4,10 @@ import { useParams, Link } from "react-router";
 import { useState, useEffect } from "react";
 import * as hootService from "../../services/hootService";
 import CommentFormPage from "../CommentFormPage/CommentFormPage";
+import Loading from "../../components/Loading/Loading";
 import styles from "./HootDetailsPage.module.css";
+import Icon from "../../components/Icon/Icon";
+import AuthorInfo from "../../components/AuthorInfo/AuthorInfo";
 
 const HootDetailsPage = (props) => {
   const { hootId } = useParams();
@@ -33,7 +36,8 @@ const HootDetailsPage = (props) => {
     fetchHoot();
   }, [hootId]);
 
-  if (!hoot) return <main>Loading...</main>;
+  if (!hoot) return <Loading />;
+
   return (
     <main className={styles.container}>
       <section>
@@ -41,15 +45,14 @@ const HootDetailsPage = (props) => {
           <p>{hoot.category.toUpperCase()}</p>
           <h1>{hoot.title}</h1>
           <div>
-            <p>
-              {`${hoot.author.email} posted on
-          ${new Date(hoot.createdAt).toLocaleDateString()}`}
-            </p>
+            <AuthorInfo content={hoot} />
             {hoot.author._id === user._id && (
               <>
-                <Link to={`/hoots/${hootId}/edit`}>Edit</Link>
+                <Link to={`/hoots/${hootId}/edit`}>
+                  <Icon category="Edit" />
+                </Link>
                 <button onClick={() => props.handleDeleteHoot(hootId)}>
-                  Delete
+                  <Icon category="Trash" />
                 </button>
               </>
             )}
@@ -66,17 +69,14 @@ const HootDetailsPage = (props) => {
           <article key={comment._id}>
             <header>
               <div>
-                <p>
-                  {`${comment.author.email} posted on
-                ${new Date(comment.createdAt).toLocaleDateString()}`}
-                </p>
+                <AuthorInfo content={comment} />
                 {comment.author._id === user._id && (
                   <>
                     <Link to={`/hoots/${hootId}/comments/${comment._id}/edit`}>
-                      Edit
+                      <Icon category="Edit" />
                     </Link>
                     <button onClick={() => handleDeleteComment(comment._id)}>
-                      Delete
+                      <Icon category="Trash" />
                     </button>
                   </>
                 )}

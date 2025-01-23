@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import * as hootService from "../../services/hootService";
 import styles from './CommentFormPage.module.css';
+import Icon from "../../components/Icon/Icon";
 
 const CommentFormPage = (props) => {
   const [formData, setFormData] = useState({ text: "" });
@@ -51,7 +52,7 @@ const CommentFormPage = (props) => {
           value={formData.text}
           onChange={handleChange}
         />
-        <button type='submit'>SUBMIT</button>
+        <button type='submit'><Icon category='Create' /></button>
       </form>
     </main>
   );
@@ -67,7 +68,7 @@ const CommentFormPage = (props) => {
         value={formData.text}
         onChange={handleChange}
       />
-      <button type="submit">SUBMIT COMMENT</button>
+      <button type="submit"><Icon category='Create' /></button>
     </form>
   );
 };

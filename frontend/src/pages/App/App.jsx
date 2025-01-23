@@ -56,7 +56,7 @@ export default function App() {
         {user ? (
           <Routes>
             {/* Protected Routes (available only to signed-in users) */}
-            <Route path="/" element={<HomePage />} />
+            <Route path='/' element={<HomePage />} />
             <Route path="/hoots" element={<HootListPage hoots={hoots} />} />
             <Route
               path="/hoots/:hootId"
@@ -83,7 +83,7 @@ export default function App() {
         ) : (
           <Routes>
             {/* Non-user Routes (available only to guests) */}
-            <Route path="/" element={<HomePage />} />
+            <Route path='/' element={<HomePage />} />
             <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
             <Route path="/login" element={<LogInPage setUser={setUser} />} />
           </Routes>
