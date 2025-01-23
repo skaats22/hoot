@@ -1,11 +1,12 @@
 // src/components/HootList/HootList.jsx
 
 import { Link } from 'react-router';
+import styles from "./HootListPage.module.css"
 
 const HootList = (props) => {
 
   return (
-    <main>
+    <main className={styles.container}>
       {props.hoots.map((hoot) => (
         <Link key={hoot._id} to={`/hoots/${hoot._id}`}>
           <article>

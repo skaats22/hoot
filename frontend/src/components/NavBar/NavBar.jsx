@@ -1,6 +1,7 @@
 import { NavLink, Link, useNavigate } from "react-router";
 import { logOut } from "../../services/authService";
-import "./NavBar.css";
+import styles from "./NavBar.module.css";
+import Logo from "../../assets/images/logo.svg"
 
 export default function NavBar({ user, setUser }) {
   const navigate = useNavigate();
@@ -12,7 +13,8 @@ export default function NavBar({ user, setUser }) {
   }
 
   return (
-    <nav className="NavBar">
+    <nav className={styles.container}>
+      <Link to='/'><img src={Logo} alt='A cute owl' /></Link>
       <NavLink to="/">Home</NavLink>
       &nbsp; | &nbsp;
       {user ? (
@@ -24,7 +26,7 @@ export default function NavBar({ user, setUser }) {
           <NavLink to="/hoots/new">New Hoot</NavLink>
           &nbsp; | &nbsp;
           <Link to="" onClick={handleLogOut}>
-            Log Out
+            Log Out 
           </Link>
           <span>Welcome, {user.name}</span>
         </>

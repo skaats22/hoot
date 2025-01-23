@@ -3,7 +3,8 @@
 import { useParams, Link } from "react-router";
 import { useState, useEffect } from "react";
 import * as hootService from "../../services/hootService";
-import CommentFormPage from "../CommentFormPage/CommentFormPage"
+import CommentFormPage from "../CommentFormPage/CommentFormPage";
+import styles from "./HootDetailsPage.module.css";
 
 const HootDetailsPage = (props) => {
   const { hootId } = useParams();
@@ -34,23 +35,25 @@ const HootDetailsPage = (props) => {
 
   if (!hoot) return <main>Loading...</main>;
   return (
-    <main>
+    <main className={styles.container}>
       <section>
         <header>
           <p>{hoot.category.toUpperCase()}</p>
           <h1>{hoot.title}</h1>
-          <p>
-            {`${hoot.author.email} posted on
+          <div>
+            <p>
+              {`${hoot.author.email} posted on
           ${new Date(hoot.createdAt).toLocaleDateString()}`}
-          </p>
-          {hoot.author._id === user._id && (
-            <>
-              <Link to={`/hoots/${hootId}/edit`}>Edit</Link>
-              <button onClick={() => props.handleDeleteHoot(hootId)}>
-                Delete
-              </button>
-            </>
-          )}
+            </p>
+            {hoot.author._id === user._id && (
+              <>
+                <Link to={`/hoots/${hootId}/edit`}>Edit</Link>
+                <button onClick={() => props.handleDeleteHoot(hootId)}>
+                  Delete
+                </button>
+              </>
+            )}
+          </div>
         </header>
         <p>{hoot.text}</p>
       </section>
@@ -62,20 +65,22 @@ const HootDetailsPage = (props) => {
         {hoot.comments.map((comment) => (
           <article key={comment._id}>
             <header>
-              <p>
-                {`${comment.author.email} posted on
+              <div>
+                <p>
+                  {`${comment.author.email} posted on
                 ${new Date(comment.createdAt).toLocaleDateString()}`}
-              </p>
-              {comment.author._id === user._id && (
-                <>
-                  <Link to={`/hoots/${hootId}/comments/${comment._id}/edit`}>
-                    Edit
-                  </Link>
-                  <button onClick={() => handleDeleteComment(comment._id)}>
-                    Delete
-                  </button>
-                </>
-              )}
+                </p>
+                {comment.author._id === user._id && (
+                  <>
+                    <Link to={`/hoots/${hootId}/comments/${comment._id}/edit`}>
+                      Edit
+                    </Link>
+                    <button onClick={() => handleDeleteComment(comment._id)}>
+                      Delete
+                    </button>
+                  </>
+                )}
+              </div>
             </header>
             <p>{comment.text}</p>
           </article>
