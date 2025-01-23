@@ -5,6 +5,7 @@ import "./App.css";
 import * as hootService from "../../services/hootService";
 import NavBar from "../../components/NavBar/NavBar";
 import LogInPage from "../LogInPage/LogInPage";
+import SignUpPage from "../SignUpPage/SignUpPage";
 import HomePage from "../HomePage/HomePage";
 import HootListPage from "../HootListPage/HootListPage";
 import HootDetailsPage from "../HootDetailsPage/HootDetailsPage";
