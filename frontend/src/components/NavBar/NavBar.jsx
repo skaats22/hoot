@@ -17,16 +17,15 @@ export default function NavBar({ user, setUser }) {
       &nbsp; | &nbsp;
       {user ? (
         <>
-          <NavLink to="/posts" end>
-            Post List
+          <NavLink to="/hoots" end>
+            Hoots
           </NavLink>
           &nbsp; | &nbsp;
-          <NavLink to="/posts/new">New Post</NavLink>
+          <NavLink to="/hoots/new">New Hoot</NavLink>
           &nbsp; | &nbsp;
           <Link to="" onClick={handleLogOut}>
             Log Out
           </Link>
-          {/* TODO: Add Log Out Link */}
           <span>Welcome, {user.name}</span>
         </>
       ) : (
